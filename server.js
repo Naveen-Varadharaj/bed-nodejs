@@ -7,10 +7,17 @@ connectDB();
 
 // 3️⃣ Import other modules
 const express = require("express");
+const cors = require("cors");
 const app = express();
 
 // 4️⃣ Middleware
 app.use(express.json());
+
+app.use(cors({
+  origin: process.env.FRONTEND_URL, // ✅ from .env file
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+}));
 
 // 5️⃣ Routes
 const userRoutes = require("./routes/userRoutes");
